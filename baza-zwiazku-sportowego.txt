@@ -1,0 +1,28 @@
+create table Zawodnik (
+    NrLicencjiZawodnika int primary key identity,
+    Imie varchar (50) collate polish_ci_as not null,
+    Nazwsiko varchar (100) collate polish_ci_as not null,
+    PESEL char (11) unique not null,
+    Plec varchar (20)
+    foreign key (NrLicencjiZawodnika) references Klub 
+    on update no action on delete no action 
+)
+
+create table Klub (
+    NrLicencjiKlubu int primary key identity,
+    Nazwa varchar (100) collate polish_ci_as not null,
+    Miasto varchar (100) not null,
+    ProwadzoneGrupyWiekowe varchar (100)
+    foreign key (NrLicencjiKlubu) references Zawodnik 
+    on update no action on delete no action 
+)
+
+insert into Zawodnik values 
+('Bogdan', 'Murzyk', '12345678901', 'mezczyzna'),
+('Adam', 'Mazur', '23456789012', 'mezczyzna'),
+('Krystian', 'Franczyk', '34567890123', 'mezczyzna')
+
+insert into Klub values 
+('Wisla Krakow', 'Krakow', 'senior'),
+('Cravocia', 'Krakow', 'młodzik'),
+('Hutnik Krakow', 'Krakow', 'junior')
